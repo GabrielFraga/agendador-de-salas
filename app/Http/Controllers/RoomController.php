@@ -15,13 +15,8 @@ class RoomController extends Controller
     }
 
     public function get(Request $request){
-        // $rooms = $this->model->all();
-        $rooms = $this->model->where([
-            ['has_computer', '=', $request->input('has_computer')],
-            ['has_projector', '=', $request->input('has_projector')],
-            ['has_video_chat', '=', $request->input('has_video_chat')],
-            ['qntd_chairs', '>=', $request->input('qntd_chairs')]
-            ])->get();
+
+        $rooms = $this->model->where($request->all())->get();
 
         return response()->json($rooms);
     }
