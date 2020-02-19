@@ -3,32 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rooms;
 
 class RoomController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $model;
+
+    public function __construct(Rooms $rooms)
     {
-        //
+        $this->model = $rooms;
     }
 
     public function get(){
-        return "get " ;
+        $rooms = $this->model->all();
+
+        return response()->json($rooms);
     }
 
     public function store(Request $request){
-        dd($request->all);
+        $rooms = $this->model->create($request->all());
+
+        return response()->json($rooms);
     }
 
     public function update($id, Request $request){
-        dd($id, $request->all);
+        $this->model->find($id)->update($request->all());
+        $rooms = $this->model->find($id);
+
+        return response()->json($rooms);
+
     }
 
     public function destroy($id){
-        dd($id);
+        $rooms = $this->model->find($id)->delete();
+
+        return response()->json(null);
     }
 }
