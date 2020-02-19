@@ -11,6 +11,19 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => '/collaborator'], function () use ($router) {
+
+    $router->get("/", 'CollaboratorController@get');
+    $router->post("/", 'CollaboratorController@store');
+    $router->put("{id}", 'CollaboratorController@update');
+    $router->delete("{id}", 'CollaboratorController@destroy');
+});
+
+
+$router->group(['prefix' => '/room'], function () use ($router) {
+
+    $router->get("/", 'RoomController@get');
+    $router->post("/", 'RoomController@store');
+    $router->put("{id}", 'RoomController@update');
+    $router->delete("{id}", 'RoomController@destroy');
 });
