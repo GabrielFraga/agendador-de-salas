@@ -1,7 +1,12 @@
 import React from 'react';
 
 // import { Container } from './styles';
+import Container from '../../components/Container';
 
 export default function Rooms() {
-  return <h1>Rooms</h1>;
+  return (
+    <Container>
+      <h1>Salas</h1>
+    </Container>
+  );
 }
