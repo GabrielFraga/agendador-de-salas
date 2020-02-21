@@ -1,8 +1,8 @@
 import React from 'react';
 
 // import { Container } from './styles';
-import Container from '../../components/Container';
+import CollaboratorForm from '../../components/CollaboratorForm';
 
 export default function CreateCollaborators() {
-  return <Container />;
+  return <CollaboratorForm action="Adicionar" />;
 }

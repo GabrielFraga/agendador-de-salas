@@ -9,7 +9,7 @@ export const Container = styled.div`
     }
   }
 
-  .btn {
+  .table-button {
     padding: 0;
     line-height: 1;
   }

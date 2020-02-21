@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Container from '../../components/Container';
 import Header from '../../components/Header';
 import Content from '../../components/Content';
@@ -38,7 +39,12 @@ export default function Collaborators() {
     <Container>
       <Header>
         <h1 className="font-weight-bold">Colaboradores</h1>
-        <Button className="font-weight-bold" variant="primary" type="submit">
+        <Button
+          className="font-weight-bold"
+          variant="primary"
+          type="submit"
+          onClick={() => history.push(`/collaborators/add`)}
+        >
           Adicionar
         </Button>
       </Header>
@@ -62,15 +68,23 @@ export default function Collaborators() {
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
                   <td className="d-flex justify-content-between">
-                    <Button
+                    {/* <Button
+                      className="table-button"
                       variant="link"
-                      onClick={() => history.push(`/update/${item.id}`)}
+                      onClick={() =>
+                        history.push(`/collaborators/edit/${item.id}`)
+                      } */}
+                    <Link
+                      to={{
+                        pathname: `/collaborators/edit/${item.id}`,
+                        state: item,
+                      }}
                     >
                       Editar
-                    </Button>
+                    </Link>
                     <Button
                       variant="link"
-                      className="text-danger "
+                      className="text-danger table-button"
                       onClick={() => handleDelete(item.id)}
                     >
                       Excluir
