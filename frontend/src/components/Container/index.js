@@ -6,9 +6,11 @@ import { ContainerStyle } from './styles';
 export default function Body({ children }) {
   return (
     <>
-      <Navbar />
       <ContainerStyle>
-        <Container>{children}</Container>
+        <Container>
+          <Navbar />
+          {children}
+        </Container>
       </ContainerStyle>
     </>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 import { HeaderStyle } from './styles';
 
 export default function Header({ children }) {
   return (
     <HeaderStyle>
-      <Row>{children}</Row>
+      <Container>
+        <Row>{children}</Row>
+      </Container>
     </HeaderStyle>
   );
 }

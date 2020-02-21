@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const NavStyles = styled.div`
-  padding: 20px;
-  background: #f5f5f5;
+  padding: 50px 0;
 
   .nav {
     background: #fff;
