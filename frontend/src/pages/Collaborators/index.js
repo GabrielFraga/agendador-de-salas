@@ -68,12 +68,6 @@ export default function Collaborators() {
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
                   <td className="d-flex justify-content-between">
-                    {/* <Button
-                      className="table-button"
-                      variant="link"
-                      onClick={() =>
-                        history.push(`/collaborators/edit/${item.id}`)
-                      } */}
                     <Link
                       to={{
                         pathname: `/collaborators/edit/${item.id}`,

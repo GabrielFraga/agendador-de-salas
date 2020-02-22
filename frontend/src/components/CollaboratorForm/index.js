@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import * as Yup from 'yup';
 
@@ -14,7 +14,6 @@ import Header from '../Header';
 import history from '../../services/history';
 
 import api from '../../services/api';
-// import { Container } from './styles';
 
 export default function CollaboratorForm({
   action,
@@ -33,7 +32,7 @@ export default function CollaboratorForm({
 
   async function handleSubmit(data) {
     try {
-      if (action === 'Adicionar') {
+      if (action === 'create') {
         await api.post('/collaborator', data);
       } else {
         await api.put(`/collaborator/${userId}`, data);

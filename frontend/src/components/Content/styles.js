@@ -4,7 +4,8 @@ export const Container = styled.div`
   table {
     font-size: 16px;
 
-    td {
+    td,
+    tr th {
       padding: 30px 0;
     }
   }

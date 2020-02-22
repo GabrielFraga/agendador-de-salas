@@ -1,7 +1,7 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import RoomForm from '../../components/RoomForm';
 
 export default function CreateRooms() {
-  return <div />;
+  return <RoomForm action="create" />;
 }
