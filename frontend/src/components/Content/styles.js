@@ -13,4 +13,8 @@ export const Container = styled.div`
     padding: 0;
     line-height: 1;
   }
+
+  .form-group span {
+    color: red;
+  }
 `;

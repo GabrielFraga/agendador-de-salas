@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+
+import * as Yup from 'yup';
+
+import { Button } from 'react-bootstrap';
+
+import { Form, Input } from '@rocketseat/unform';
 
 import { toast } from 'react-toastify';
 import Container from '../Container';
@@ -13,30 +18,32 @@ import api from '../../services/api';
 
 export default function CollaboratorForm({
   action,
+  userId,
   userName,
   userEmail,
   userPhone,
 }) {
-  const [validated, setValidated] = useState(false);
+  const schema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required('Campo obrigatório'),
+    name: Yup.string().required('Campo obrigatório'),
+    phone: Yup.number().typeError('Informe um telefone válido'),
+  });
 
-  const handleSubmit = event => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidated(true);
-    } else {
-      event.preventDefault();
-      event.stopPropagation();
-
-      // console.log(event.target);
-      // (async () => {
-      //   await api.post('/collaborators', {
-      //     form,
-      //   });
-      // })();
+  async function handleSubmit(data) {
+    try {
+      if (action === 'Adicionar') {
+        await api.post('/collaborator', data);
+      } else {
+        await api.put(`/collaborator/${userId}`, data);
+      }
+      toast.success('Colaborador salvo com sucesso');
+      history.push('/');
+    } catch (error) {
+      toast.error('Erro na validação dos dados. Tente novamente');
     }
-  };
+  }
 
   return (
     <Container>
@@ -53,47 +60,45 @@ export default function CollaboratorForm({
       </Header>
       <Content>
         <Form
+          schema={schema}
+          id="updateCollaborator"
           className="p-4"
-          noValidate
-          validated={validated}
           onSubmit={handleSubmit}
+          initialData={{
+            name: userName,
+            email: userEmail,
+            phone: userPhone,
+          }}
         >
-          <Form.Group controlId="validationCustom01">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Nome"
-              defaultValue={userName}
+          <div className="form-group">
+            <label className="form-label">Nome</label>
+            <Input
+              className="form-control"
+              id="name"
+              name="name"
+              placeholder="Digite o nome do colaborador"
             />
-            <Form.Control.Feedback>Válido!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-              Por favor, informe o nome
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Endereço de e-mail</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              placeholder="Insira seu e-mail"
-              defaultValue={userEmail}
+          </div>
+          <div className="form-group">
+            <label className="form-label">E-mail</label>
+            <Input
+              className="form-control"
+              id="email"
+              name="email"
+              placeholder="Digite o e-mail do colaborador"
             />
-            <Form.Text className="text-muted"></Form.Text>
-            <Form.Control.Feedback>Válido!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-              Por favor, informe um e-mail válido
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="formBasicPhone">
-            <Form.Label>Telefone</Form.Label>
-            <Form.Control
-              type="phone"
-              defaultValue={userPhone}
-              placeholder="Insira seu telefone"
+          </div>
+          <div className="form-group">
+            <label className="form-label">Telefone</label>
+            <Input
+              className="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Digite o telefone"
             />
-          </Form.Group>
+          </div>
           <Button
+            form="updateCollaborator"
             className="font-weight-bold btn"
             variant="primary"
             type="submit"
