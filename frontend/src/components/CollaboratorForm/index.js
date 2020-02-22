@@ -32,7 +32,7 @@ export default function CollaboratorForm({
 
   async function handleSubmit(data) {
     try {
-      if (action === 'create') {
+      if (action === 'Adicionar') {
         await api.post('/collaborator', data);
       } else {
         await api.put(`/collaborator/${userId}`, data);

@@ -31,7 +31,7 @@ export default function RoomForm({
   });
 
   useEffect(() => {
-    if (action === 'update') {
+    if (action === 'Editar') {
       setFormBooleans({ has_computer, has_projector, has_video_chat });
     }
   }, [action, has_computer, has_projector, has_video_chat]);
@@ -48,7 +48,7 @@ export default function RoomForm({
 
   async function handleSubmit(data) {
     try {
-      if (action === 'create') {
+      if (action === 'Adicionar') {
         await api.post('/room', data);
       } else {
         await api.put(`/room/${roomId}`, data);

@@ -6,7 +6,7 @@ export default function UpdateCollaborators({ location }) {
   const { id, name, email, phone } = location.state;
   return (
     <CollaboratorForm
-      action="update"
+      action="Editar"
       userId={id}
       userName={name}
       userEmail={email}

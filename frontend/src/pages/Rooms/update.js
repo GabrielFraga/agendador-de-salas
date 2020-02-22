@@ -14,7 +14,7 @@ export default function UpdateRooms({ location }) {
 
   return (
     <RoomForm
-      action="update"
+      action="Editar"
       roomId={id}
       name={name}
       qntd_chairs={qntd_chairs}
