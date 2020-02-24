@@ -24,10 +24,13 @@ export default function CollaboratorForm({
 }) {
   const schema = Yup.object().shape({
     email: Yup.string()
-      .email()
+      .email('Informe um e-mail válido')
       .required('Campo obrigatório'),
     name: Yup.string().required('Campo obrigatório'),
-    phone: Yup.number().typeError('Informe um telefone válido'),
+    phone: Yup.string()
+      .typeError('Informe um telefone válido.')
+      .max(11, 'Máximo 11 caracteres')
+      .nullable(),
   });
 
   async function handleSubmit(data) {
@@ -93,6 +96,7 @@ export default function CollaboratorForm({
               className="form-control"
               id="phone"
               name="phone"
+              data-mask="(00) 0000-0000"
               placeholder="Digite o telefone"
             />
           </div>
