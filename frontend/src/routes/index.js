@@ -7,6 +7,7 @@ import UpdateCollaborators from '../pages/Collaborators/update';
 
 import Appointments from '../pages/Appointments';
 import CreateAppointment from '../pages/Appointments/create';
+import UpdateAppointment from '../pages/Appointments/update';
 
 import Rooms from '../pages/Rooms';
 import CreateRooms from '../pages/Rooms/create';
@@ -23,6 +24,11 @@ export default function Routes() {
 
       <Route path="/appointments" exact component={Appointments} />
       <Route path="/appointments/add" exact component={CreateAppointment} />
+      <Route
+        path="/appointments/edit/:id"
+        exact
+        component={UpdateAppointment}
+      />
 
       <Route path="/Rooms" exact component={Rooms} />
       <Route path="/Rooms/add" component={CreateRooms} />

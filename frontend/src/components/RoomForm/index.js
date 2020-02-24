@@ -63,7 +63,7 @@ export default function RoomForm({
   return (
     <Container>
       <Header>
-        <h1 className="font-weight-bold">{action} Colaborador</h1>
+        <h1 className="font-weight-bold">{action} Sala</h1>
         <Button
           className="font-weight-bold"
           onClick={() => history.goBack()}

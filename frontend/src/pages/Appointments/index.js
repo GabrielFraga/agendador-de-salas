@@ -31,14 +31,14 @@ export default function Appointments() {
         ...ap,
         start_date_formated: format(
           parseISO(ap.date_start),
-          "dd'/'MM'/'yyyy 'às' H:mm:ss",
+          "dd'/'MM'/'yyyy 'às' H:mm",
           {
             locale: pt,
           }
         ),
         end_date_formated: format(
           parseISO(ap.date_end),
-          "dd'/'MM'/'yyyy 'às' H:mm:ss",
+          "dd'/'MM'/'yyyy 'às' H:mm",
           {
             locale: pt,
           }
@@ -75,14 +75,6 @@ export default function Appointments() {
     <Container>
       <Header>
         <h1 className="font-weight-bold">Agendamentos</h1>
-        <Button
-          className="font-weight-bold"
-          variant="primary"
-          type="submit"
-          onClick={() => history.push(`/appointments/add`)}
-        >
-          Adicionar
-        </Button>
       </Header>
       <Content>
         <div className="card-body">
