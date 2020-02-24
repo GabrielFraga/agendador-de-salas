@@ -1,6 +1,18 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
+import React, { useState } from 'react';
 
 import * as Yup from 'yup';
+
+import DateFnsUtils from '@date-io/date-fns'; // choose your lib
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+
+import { pt } from 'date-fns/esm/locale';
 
 import { Button, Row, Col } from 'react-bootstrap';
 
@@ -16,6 +28,9 @@ import history from '../../services/history';
 import api from '../../services/api';
 
 export default function AppointmentForm({ action }) {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
   return (
     <Container>
       <Header>
@@ -45,26 +60,56 @@ export default function AppointmentForm({ action }) {
             </Col>
             <Col>
               <div className="form-group">
-                <label className="form-label">Data de Início</label>
-                {/* <Input
-                className="form-control"
-                id="date_start"
-                name="date_start"
-              /> */}
-                <div className="input-group date" id="datetimepicker2">
-                  <input type="text" className="form-control" />
+                {/* <label className="form-label">Data de Início</label> */}
+                {/* <div className="input-group date" id="datetimepicker2">
+                  <input type="time" className="form-control" />
                   <span className="input-group-addon">
                     <span className="glyphicon glyphicon-calendar" />
                   </span>
-                </div>
+                </div> */}
+                <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pt}>
+                  <Row>
+                    <Col>
+                      <label className="form-label">Data/Hora Inicial</label>
+                      <DateTimePicker
+                        value={startDate}
+                        onChange={setStartDate}
+                        ampm={false}
+                        disablePast
+                        minutesStep={0}
+                        format="dd'/'MM'/'yyyy 'às' H:mm"
+                      />
+                    </Col>
+                    <Col>
+                      <label className="form-label">Data/Hora Final</label>
+                      <DateTimePicker
+                        value={endDate}
+                        onChange={setEndDate}
+                        ampm={false}
+                        disablePast
+                        format="dd'/'MM'/'yyyy 'às' H:mm"
+                        minDate={startDate}
+                        minDateMessage="A data final não pode ser inferior a data inicial"
+                        minutesStep={0}
+                      />
+                    </Col>
+                    {/* <Col>
+                      <label className="form-label">Hora Final</label>
+                      <TimePicker
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                      />
+                    </Col> */}
+                  </Row>
+                </MuiPickersUtilsProvider>
               </div>
             </Col>
-            <Col>
+            {/* <Col>
               <div className="form-group">
                 <label className="form-label">Data Final</label>
                 <Input className="form-control" id="date_end" name="date_end" />
               </div>
-            </Col>
+            </Col> */}
           </Row>
           <Row className="p-2">
             <Col>
