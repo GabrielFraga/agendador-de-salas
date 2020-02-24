@@ -60,13 +60,6 @@ export default function AppointmentForm({ action }) {
             </Col>
             <Col>
               <div className="form-group">
-                {/* <label className="form-label">Data de Início</label> */}
-                {/* <div className="input-group date" id="datetimepicker2">
-                  <input type="time" className="form-control" />
-                  <span className="input-group-addon">
-                    <span className="glyphicon glyphicon-calendar" />
-                  </span>
-                </div> */}
                 <MuiPickersUtilsProvider utils={DateFnsUtils} locale={pt}>
                   <Row>
                     <Col>
@@ -93,23 +86,10 @@ export default function AppointmentForm({ action }) {
                         minutesStep={0}
                       />
                     </Col>
-                    {/* <Col>
-                      <label className="form-label">Hora Final</label>
-                      <TimePicker
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                      />
-                    </Col> */}
                   </Row>
                 </MuiPickersUtilsProvider>
               </div>
             </Col>
-            {/* <Col>
-              <div className="form-group">
-                <label className="form-label">Data Final</label>
-                <Input className="form-control" id="date_end" name="date_end" />
-              </div>
-            </Col> */}
           </Row>
           <Row className="p-2">
             <Col>
