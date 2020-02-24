@@ -41,7 +41,7 @@ export default function Appointments() {
 
   async function handleDelete(id) {
     // eslint-disable-next-line no-alert
-    const resp = window.confirm('Deseja realmente remover este colaborador?');
+    const resp = window.confirm('Deseja realmente remover este agendamento?');
     if (resp) {
       try {
         await api.delete(`/appointment/${id}`);
