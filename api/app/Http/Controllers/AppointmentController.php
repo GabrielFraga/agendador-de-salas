@@ -4,74 +4,74 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Collaborators;
+use App\Models\Appointments;
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Models\ValidationCollaborator;
+use App\Models\ValidationAppointment;
 
 
-class CollaboratorController extends Controller
+class AppointmentController extends Controller
 {
     private $model;
 
-    public function __construct(Collaborators $collaborators)
+    public function __construct(Appointments $appointments)
     {
-        $this->model = $collaborators;
+        $this->model = $appointments;
     }
 
-    public function get(Request $request){
-        $collaborators = $this->model->where($request->all())->get();
+    public function get(){
+        $appointments = $this->model->all();
 
-        if(!count($collaborators) > 0){
+        if(!count($appointments) > 0){
             return response()->json([],Response::HTTP_OK);
         }
 
-        return response()->json($collaborators, Response::HTTP_OK);
+        return response()->json($appointments, Response::HTTP_OK);
     }
 
     public function store(Request $request){
 
         $validator = Validator::make(
-            $request->all(),ValidationCollaborator::RULE_COLLABORATOR
+            $request->all(),ValidationAppointment::RULE_APPOINTMENT
         );
         if($validator->fails()){
             return response()->json($validator->errors(), Response::HTTP_BAD_REQUEST);
         }
 
-        $collaborators = $this->model->create($request->all());
+        $appointments = $this->model->create($request->all());
 
-        return response()->json($collaborators,Response::HTTP_CREATED);
+        return response()->json($appointments,Response::HTTP_CREATED);
     }
 
     public function update($id, Request $request){
-        $collaborators = $this->model->find($id);
+        $appointments = $this->model->find($id);
 
-        if(!$collaborators){
+        if(!$appointments){
             return response()->json('Value not found',Response::HTTP_NOT_FOUND);
         }
 
         $validator = Validator::make(
-            $request->all(),ValidationCollaborator::RULE_COLLABORATOR
+            $request->all(),ValidationAppointment::RULE_APPOINTMENT
         );
         if($validator->fails()){
             return response()->json($validator->errors(), Response::HTTP_BAD_REQUEST);
         }
 
 
-        $collaborators->update($request->all());
+        $appointments->update($request->all());
 
-        return response()->json($collaborators, Response::HTTP_OK);
+        return response()->json($appointments, Response::HTTP_OK);
 
     }
 
     public function destroy($id){
-        $collaborators = $this->model->find($id);
+        $appointments = $this->model->find($id);
 
-        if(!$collaborators){
+        if(!$appointments){
             return response()->json('Value not found',Response::HTTP_NOT_FOUND);
         }
 
-        $collaborators->delete();
+        $appointments->delete();
 
         return response()->json(null, Response::HTTP_OK);
     }
