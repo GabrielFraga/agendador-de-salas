@@ -19,7 +19,8 @@ Na pasta do projeto será preciso:
 * Definir as variáveis de ambiente: utilize o arquivo `.env.example`. Basta cloná-lo renomeando a cópia como `.env`. Nos campos relacionados à conexão com o banco, utilize as informações de acesso do banco utilizado.
 
 Ex:
-`
+
+```
 DB_CONNECTION=mysql
 
 DB_HOST=127.0.0.1
@@ -31,8 +32,8 @@ DB_DATABASE=agendador
 DB_USERNAME=agendador
 
 DB_PASSWORD=secret
+```
 
-`
 Na pasta do projeto execute os comandos abaixo no terminal.
 
 * Instalar as dependências 
