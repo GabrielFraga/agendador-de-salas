@@ -97,6 +97,7 @@ export default function RoomForm({
             <label className="form-label">Quantidade de cadeiras</label>
             <Input
               className="form-control"
+              type="number"
               id="qntd_chairs"
               name="qntd_chairs"
               placeholder="Quantidade de cadeiras"
