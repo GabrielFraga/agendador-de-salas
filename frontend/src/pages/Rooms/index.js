@@ -36,8 +36,8 @@ export default function Rooms() {
   const [roomId, setRoomId] = useState();
   const [collaboratorId, setCollaboratorId] = useState();
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
   const [changeStatus, setChangeStatus] = useState(false);
 

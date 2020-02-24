@@ -66,8 +66,8 @@ export default function Appointments() {
                 <th scope="col">#</th>
                 <th scope="col">Colaborador</th>
                 <th scope="col">Sala</th>
-                <th scope="col">Data de início</th>
-                <th scope="col">Data final</th>
+                <th scope="col">Data/Hora inicial</th>
+                <th scope="col">Data/Hora final</th>
                 <th scope="col">Ações</th>
               </tr>
             </thead>
