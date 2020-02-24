@@ -15,14 +15,6 @@ export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
   const [changeStatus, setChangeStatus] = useState(false);
 
-  // const getCollaborator = async id => {
-  //   return api.get('/collaborator', {
-  //     params: {
-  //       id,
-  //     },
-  //   });
-  // };
-
   useEffect(() => {
     (async () => {
       const { data } = await api.get('/appointment');
@@ -42,16 +34,7 @@ export default function Appointments() {
             locale: pt,
           }
         ),
-        // collaborator: await getCollaborator(ap.collaborator_id),
       }));
-
-      // const collaborator = await api.get('/collaborator', {
-      //   params: {
-      //     id: appointment[0].collaborator_id,
-      //   },
-      // });
-      // appointment.collaborator = collaborator.data[0];
-      // console.log(appointment);
       setAppointments(appointment);
     })();
   }, [changeStatus]);

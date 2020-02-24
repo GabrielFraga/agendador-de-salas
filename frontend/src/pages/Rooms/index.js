@@ -63,12 +63,13 @@ export default function Rooms() {
   }
 
   async function handleSearch(data) {
-    const { has_computer, has_projector, has_video_chat } = data;
+    const { qntd_chairs, has_computer, has_projector, has_video_chat } = data;
     const resp = await api.get('/room', {
       params: {
-        has_computer,
-        has_projector,
-        has_video_chat,
+        qntd_chairs: qntd_chairs || null,
+        has_computer: has_computer === 'true' ? has_computer : null,
+        has_projector: has_projector === 'true' ? has_projector : null,
+        has_video_chat: has_video_chat === 'true' ? has_video_chat : null,
       },
     });
     setRooms(resp.data);
@@ -121,8 +122,8 @@ export default function Rooms() {
                 <Input
                   type="number"
                   className="form-control"
-                  id="qtd_chairs"
-                  name="qtd_chairs"
+                  id="qntd_chairs"
+                  name="qntd_chairs"
                   placeholder="Quantidade de cadeiras"
                 />
               </div>
