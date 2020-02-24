@@ -2,6 +2,9 @@
 
 Desafio para resolução utilizando php e javascript. O sistema deve ser um agendador de salas de reunião. Este deve possuir colaboradores, salas e agendamentos.
 
+As principais tecnologias utilizadas para o desenvolvimento deste projeto foram: PHP (utilizando o microframework Lumen PHP) para desenvolver a API Backend RestFul; ReactJS e Bootstrap para desenvolvimento do frontend.
+
+
 
 ### Pré requisitos
 
