@@ -1,3 +1,4 @@
+# Agendador de Salas 
 
 Desafio para resolução utilizando php e javascript. O sistema deve ser um agendador de salas de reunião. Este deve possuir colaboradores, salas e agendamentos.
 
@@ -10,7 +11,7 @@ Antes de iniciar a API, pode ser necessário previamente:
 * Ter um banco de dados local ativo mysql, postgress, etc..
 * Criar um banco para o projeto
 
-### Iniciar a API
+## Iniciar a API
 
 Após baixar o projeto, basta abrir o mesmo através do terminal.
 
@@ -52,3 +53,29 @@ Na pasta do projeto execute os comandos abaixo no terminal.
 
 A API deve estar em execução na porta 8000. 
 
+
+
+
+## Iniciar o site
+
+Para acessar o módulo web deste sistema, basta acessar a pasta 'frontend', instalar as dependências e executar o projeto.
+
+No terminal execute:
+
+```
+yarn
+
+ou
+
+npm install 
+```
+
+Após instalação das dependências, inicie o projeto executanto:
+
+```
+yarn start
+
+ou
+
+npm start
+```
