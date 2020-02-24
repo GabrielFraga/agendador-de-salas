@@ -84,6 +84,8 @@ npm start
 ```
 
 
+Acesse a documentação técnica de utilização do sistema:
+[Documentação Agendador](https://github.com/GabrielFraga/agendador-de-salas/wiki)
 
 
 
