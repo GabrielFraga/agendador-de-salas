@@ -84,13 +84,6 @@ npm start
 ```
 
 
-## Manual
-
-### Colaboradores
-
-Essa tela lista os colaboradores cadastrados. É possível adiconar, excluir e editar novos colaboradores a partir dessa tela.
-
-[[images/Colaboradores.png]]
 
 
 
