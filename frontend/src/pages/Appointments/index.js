@@ -10,7 +10,6 @@ import Header from '../../components/Header';
 import Content from '../../components/Content';
 
 import api from '../../services/api';
-import history from '../../services/history';
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);

@@ -2,20 +2,15 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { useState, useEffect } from 'react';
 
-import * as Yup from 'yup';
-
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { pt } from 'date-fns/esm/locale';
 
-import { Link } from 'react-router-dom';
-import { FaChevronCircleDown } from 'react-icons/fa';
-
 import { Button, Row, Col } from 'react-bootstrap';
 
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
 
 import { toast } from 'react-toastify';
 import Container from '../Container';
