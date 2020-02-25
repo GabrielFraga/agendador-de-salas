@@ -36,8 +36,8 @@ export default function Rooms() {
   const [roomId, setRoomId] = useState();
   const [collaboratorId, setCollaboratorId] = useState();
 
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [changeStatus, setChangeStatus] = useState(false);
 
@@ -54,7 +54,7 @@ export default function Rooms() {
     if (resp) {
       try {
         await api.delete(`/room/${id}`);
-        toast.success('Collaborador removido com sucesso!');
+        toast.success('Sala removida com sucesso!');
         setChangeStatus(!changeStatus);
       } catch (error) {
         toast.error('Falha na autenticação, verifique os dados eviados!');
@@ -64,15 +64,22 @@ export default function Rooms() {
 
   async function handleSearch(data) {
     const { qntd_chairs, has_computer, has_projector, has_video_chat } = data;
-    const resp = await api.get('/room', {
-      params: {
-        qntd_chairs: qntd_chairs || null,
-        has_computer: has_computer === 'true' ? has_computer : null,
-        has_projector: has_projector === 'true' ? has_projector : null,
-        has_video_chat: has_video_chat === 'true' ? has_video_chat : null,
-      },
-    });
-    setRooms(resp.data);
+    try {
+      const resp = await api.get('/appointment/room/avaliablerooms', {
+        params: {
+          date_start: format(startDate, 'yyyy-MM-dd H:mm', { locale: pt }),
+          date_end: format(endDate, 'yyyy-MM-dd H:mm', { locale: pt }),
+          qntd_chairs: qntd_chairs || null,
+          has_computer: has_computer === 'true' ? has_computer : null,
+          has_projector: has_projector === 'true' ? has_projector : null,
+          has_video_chat: has_video_chat === 'true' ? has_video_chat : null,
+        },
+      });
+
+      setRooms(Object.values(resp.data));
+    } catch (error) {
+      toast.error('Falha na autenticação, verifique os dados eviados!');
+    }
   }
 
   function handleUserSelect(data) {
@@ -114,7 +121,7 @@ export default function Rooms() {
       </Header>
 
       <Content>
-        <Form className="p-4" id="AppintmentForm" onSubmit={handleSearch}>
+        <Form className="p-4" id="handleSearch" onSubmit={handleSearch}>
           <Row className="p-2">
             <Col xs={3}>
               <div className="form-group">
@@ -140,7 +147,7 @@ export default function Rooms() {
                         onChange={setStartDate}
                         ampm={false}
                         disablePast
-                        minutesStep={0}
+                        // minutesStep={0}
                         format="dd'/'MM'/'yyyy 'às' H:mm"
                       />
                     </Col>
@@ -155,7 +162,7 @@ export default function Rooms() {
                         format="dd'/'MM'/'yyyy 'às' H:mm"
                         minDate={startDate}
                         minDateMessage="A data final não pode ser inferior a data inicial"
-                        minutesStep={0}
+                        // minutesStep={0}
                       />
                     </Col>
                   </Row>
@@ -208,7 +215,7 @@ export default function Rooms() {
             </Col>
           </Row>
           <Button
-            form="AppintmentForm"
+            form="handleSearch"
             className="font-weight-bold btn"
             variant="primary"
             type="submit"
@@ -230,59 +237,60 @@ export default function Rooms() {
               </tr>
             </thead>
             <tbody>
-              {rooms.map(item => (
-                <tr key={item.id}>
-                  <th scope="row">{item.id}</th>
-                  <td>{item.name}</td>
-                  <td>{item.qntd_chairs}</td>
-                  <td>
-                    {item.has_computer ? (
-                      <FaChevronCircleDown color="green" />
-                    ) : (
-                      <FaChevronCircleDown color="#ccc" />
-                    )}
-                  </td>
-                  <td>
-                    {item.has_projector ? (
-                      <FaChevronCircleDown color="green" />
-                    ) : (
-                      <FaChevronCircleDown color="#ccc" />
-                    )}
-                  </td>
-                  <td>
-                    {item.has_video_chat ? (
-                      <FaChevronCircleDown color="green" />
-                    ) : (
-                      <FaChevronCircleDown color="#ccc" />
-                    )}
-                  </td>
+              {rooms &&
+                rooms.map(item => (
+                  <tr key={item.id}>
+                    <th scope="row">{item.id}</th>
+                    <td>{item.name}</td>
+                    <td>{item.qntd_chairs}</td>
+                    <td>
+                      {item.has_computer ? (
+                        <FaChevronCircleDown color="green" />
+                      ) : (
+                        <FaChevronCircleDown color="#ccc" />
+                      )}
+                    </td>
+                    <td>
+                      {item.has_projector ? (
+                        <FaChevronCircleDown color="green" />
+                      ) : (
+                        <FaChevronCircleDown color="#ccc" />
+                      )}
+                    </td>
+                    <td>
+                      {item.has_video_chat ? (
+                        <FaChevronCircleDown color="green" />
+                      ) : (
+                        <FaChevronCircleDown color="#ccc" />
+                      )}
+                    </td>
 
-                  <td className="d-flex justify-content-between">
-                    <Button
-                      variant="link"
-                      className="text-warning table-button"
-                      onClick={() => handleOpenModal(item.id)}
-                    >
-                      Agendar
-                    </Button>
-                    <Link
-                      to={{
-                        pathname: `/rooms/edit/${item.id}`,
-                        state: item,
-                      }}
-                    >
-                      Editar
-                    </Link>
-                    <Button
-                      variant="link"
-                      className="text-danger table-button"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Excluir
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+                    <td className="d-flex justify-content-between">
+                      <Button
+                        variant="link"
+                        className="text-warning table-button"
+                        onClick={() => handleOpenModal(item.id)}
+                      >
+                        Agendar
+                      </Button>
+                      <Link
+                        to={{
+                          pathname: `/rooms/edit/${item.id}`,
+                          state: item,
+                        }}
+                      >
+                        Editar
+                      </Link>
+                      <Button
+                        variant="link"
+                        className="text-danger table-button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Excluir
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
