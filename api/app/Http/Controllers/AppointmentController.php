@@ -17,12 +17,10 @@ use Carbon\Carbon;
 class AppointmentController extends Controller
 {
     private $model;
-    private $RoomModel;
 
     public function __construct(Appointments $appointments, Rooms $rooms)
     {
         $this->model = $appointments;
-        $this->RoomModel = $rooms;
     }
 
     public function get(){
