@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\ValidationAppointment;
 
 use App\Models\Appointments;
-use App\Models\Rooms;
 
 use Carbon\Carbon;
 
