@@ -35,3 +35,8 @@ $router->group(['prefix' => '/appointment'], function () use ($router) {
     $router->put("{id}", 'AppointmentController@update');
     $router->delete("{id}", 'AppointmentController@destroy');
 });
+
+$router->group(['prefix' => '/appointment/room'], function () use ($router) {
+    $router->get("/avaliablerooms", 'AppointmentRoomController@getAvaliableRooms');
+
+});

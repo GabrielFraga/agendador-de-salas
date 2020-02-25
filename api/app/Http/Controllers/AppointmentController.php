@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Appointments;
+
 use Symfony\Component\HttpFoundation\Response;
 
 use App\Models\ValidationAppointment;
 
+use App\Models\Appointments;
+use App\Models\Rooms;
+
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
     private $model;
+    private $RoomModel;
 
-    public function __construct(Appointments $appointments)
+    public function __construct(Appointments $appointments, Rooms $rooms)
     {
         $this->model = $appointments;
+        $this->RoomModel = $rooms;
     }
 
     public function get(){
@@ -28,6 +34,8 @@ class AppointmentController extends Controller
 
         return response()->json($appointments, Response::HTTP_OK);
     }
+
+
 
     public function store(Request $request){
 
