@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 export default function SelectRoom({ id, name, value, onChange }) {
-  const [collabotators, setCollabotators] = useState([]);
+  const [collaborators, setCollabotators] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -20,15 +20,19 @@ export default function SelectRoom({ id, name, value, onChange }) {
       value={value}
       onChange={onChange}
     >
-      {collabotators.map(collabotator => (
-        <option
-          key={collabotator.id}
-          value={collabotator.id}
-          name={collabotator.name}
-        >
-          {collabotator.name}
-        </option>
-      ))}
+      <option value="" selected disabled hidden>
+        Escolha um usuário
+      </option>
+      {collaborators &&
+        collaborators.map(collaborator => (
+          <option
+            key={collaborator.id}
+            value={collaborator.id}
+            name={collaborator.name}
+          >
+            {collaborator.name}
+          </option>
+        ))}
     </select>
   );
 }

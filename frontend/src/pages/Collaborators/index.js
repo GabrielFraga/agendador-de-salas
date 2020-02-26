@@ -61,31 +61,32 @@ export default function Collaborators() {
               </tr>
             </thead>
             <tbody>
-              {collaborators.map(item => (
-                <tr key={item.id}>
-                  <th scope="row">{item.id}</th>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.phone}</td>
-                  <td className="d-flex justify-content-between">
-                    <Link
-                      to={{
-                        pathname: `/collaborators/edit/${item.id}`,
-                        state: item,
-                      }}
-                    >
-                      Editar
-                    </Link>
-                    <Button
-                      variant="link"
-                      className="text-danger table-button"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Excluir
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {collaborators &&
+                collaborators.map(item => (
+                  <tr key={item.id}>
+                    <th scope="row">{item.id}</th>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td className="d-flex justify-content-between">
+                      <Link
+                        to={{
+                          pathname: `/collaborators/edit/${item.id}`,
+                          state: item,
+                        }}
+                      >
+                        Editar
+                      </Link>
+                      <Button
+                        variant="link"
+                        className="text-danger table-button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Excluir
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

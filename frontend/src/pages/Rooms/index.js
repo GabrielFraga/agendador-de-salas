@@ -102,7 +102,9 @@ export default function Rooms() {
       toast.success('Agendamento realizado com sucesso!');
       history.push('/appointments');
     } catch (error) {
-      toast.error('Erro na validação dos dados. Tente novamente.');
+      toast.error(
+        'Falha ao agendar sala! Verifique a data/hora do agendamento'
+      );
     }
   }
 
@@ -147,7 +149,6 @@ export default function Rooms() {
                         onChange={setStartDate}
                         ampm={false}
                         disablePast
-                        // minutesStep={0}
                         format="dd'/'MM'/'yyyy 'às' H:mm"
                       />
                     </Col>
@@ -162,7 +163,6 @@ export default function Rooms() {
                         format="dd'/'MM'/'yyyy 'às' H:mm"
                         minDate={startDate}
                         minDateMessage="A data final não pode ser inferior a data inicial"
-                        // minutesStep={0}
                       />
                     </Col>
                   </Row>

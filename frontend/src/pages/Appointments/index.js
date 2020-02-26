@@ -72,32 +72,33 @@ export default function Appointments() {
               </tr>
             </thead>
             <tbody>
-              {appointments.map(item => (
-                <tr key={item.id}>
-                  <th scope="row">{item.id}</th>
-                  <td>{item.collaborator_name}</td>
-                  <td>{item.room_name}</td>
-                  <td>{item.start_date_formated}</td>
-                  <td>{item.end_date_formated}</td>
-                  <td className="d-flex justify-content-between">
-                    <Link
-                      to={{
-                        pathname: `/appointments/edit/${item.id}`,
-                        state: item,
-                      }}
-                    >
-                      Editar
-                    </Link>
-                    <Button
-                      variant="link"
-                      className="text-danger table-button"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Excluir
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {appointments &&
+                appointments.map(item => (
+                  <tr key={item.id}>
+                    <th scope="row">{item.id}</th>
+                    <td>{item.collaborator_name}</td>
+                    <td>{item.room_name}</td>
+                    <td>{item.start_date_formated}</td>
+                    <td>{item.end_date_formated}</td>
+                    <td className="d-flex justify-content-between">
+                      <Link
+                        to={{
+                          pathname: `/appointments/edit/${item.id}`,
+                          state: item,
+                        }}
+                      >
+                        Editar
+                      </Link>
+                      <Button
+                        variant="link"
+                        className="text-danger table-button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Excluir
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
