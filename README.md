@@ -42,7 +42,7 @@ Abra a pasta ***api*** em um terminal e execute os comandos abaixo:
 
 * Instalar as dependências 
 
-`php composer.phar install`
+`php composer install`
 
 * Executar migrations:
 
@@ -53,6 +53,10 @@ Abra a pasta ***api*** em um terminal e execute os comandos abaixo:
 `php artisan db:seed --class=RoomTableSeeder`
 
 `php artisan db:seed --class=CollaboratorTableSeeder`
+
+Inicie a API digitando:
+
+`php -S localhost:8000 -t public `
 
 A API deve estar em execução na porta 8000. 
 
