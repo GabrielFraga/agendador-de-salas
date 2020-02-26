@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rooms;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 use App\Models\ValidationRoom;
+use App\Models\Rooms;
 
 class RoomController extends Controller
 {

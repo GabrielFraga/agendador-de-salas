@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\ValidationAppointment;
 
 use App\Models\Appointments;
+use App\Models\Collaborator;
+use App\Models\Rooms;
 
 use Carbon\Carbon;
 
@@ -23,16 +25,13 @@ class AppointmentController extends Controller
     }
 
     public function get(){
-        $appointments = $this->model->all();
-
-        if(!count($appointments) > 0){
-            return response()->json([],Response::HTTP_OK);
-        }
+        $appointments = $this->model
+        ->join('room', 'appointment.room_id', '=', 'room.id')
+        ->join('collaborator', 'appointment.collaborator_id', '=', 'collaborator.id')
+        ->select('appointment.*', 'room.name as room_name', 'collaborator.name as collaborator_name')->get();
 
         return response()->json($appointments, Response::HTTP_OK);
     }
-
-
 
     public function store(Request $request){
 
