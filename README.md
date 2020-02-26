@@ -42,7 +42,7 @@ Abra a pasta ***api*** em um terminal e execute os comandos abaixo:
 
 * Instalar as dependências 
 
-`php composer install`
+`composer install`
 
 * Executar migrations:
 
