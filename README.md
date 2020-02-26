@@ -16,11 +16,11 @@ Antes de iniciar a API, pode ser necessário previamente:
 
 ## Iniciar a API
 
-Após baixar o projeto, basta abrir o mesmo através do terminal.
+Após baixar o projeto, basta abrir a pasta ***api***.
 
-Na pasta do projeto será preciso: 
+Será preciso definir as variáveis de ambiente: 
 
-* Definir as variáveis de ambiente: utilize o arquivo `.env.example`. Basta cloná-lo renomeando a cópia como `.env`. Nos campos relacionados à conexão com o banco, utilize as informações de acesso do banco utilizado.
+* Utilize o arquivo `.env.example`. Basta cloná-lo renomeando a cópia como `.env`. Nos campos relacionados à conexão com o banco, utilize as informações de acesso do banco utilizado.
 
 Ex:
 
@@ -38,7 +38,7 @@ DB_USERNAME=agendador
 DB_PASSWORD=secret
 ```
 
-Na pasta do projeto execute os comandos abaixo no terminal.
+Abra a pasta ***api*** em um terminal e execute os comandos abaixo:
 
 * Instalar as dependências 
 
@@ -61,7 +61,7 @@ A API deve estar em execução na porta 8000.
 
 ## Iniciar o site
 
-Para acessar o módulo web deste sistema, basta acessar a pasta 'frontend', instalar as dependências e executar o projeto.
+Para acessar o módulo web deste sistema, basta acessar a pasta ***frontend***, instalar as dependências e executar o projeto.
 
 No terminal execute:
 
