@@ -75,8 +75,8 @@ export default function Appointments() {
               {appointments.map(item => (
                 <tr key={item.id}>
                   <th scope="row">{item.id}</th>
-                  <td>{item.collaborator_id}</td>
-                  <td>{item.room_id}</td>
+                  <td>{item.collaborator_name}</td>
+                  <td>{item.room_name}</td>
                   <td>{item.start_date_formated}</td>
                   <td>{item.end_date_formated}</td>
                   <td className="d-flex justify-content-between">
